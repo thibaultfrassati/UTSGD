@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Etat des consultations'">
+      <span class="m-b-20"> Voici le résumé de toute les consultations :</span><br><br>
+      <ngx-datatable
+              class="data-table table-responsive"
+              [rows]="rows"
+              [loadingIndicator]="loadingIndicator"
+              [columns]="columns"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [rowHeight]="50"
+              [reorderable]="reorderable">
+      </ngx-datatable>
+    </app-card>
+  </div>
+</div> 

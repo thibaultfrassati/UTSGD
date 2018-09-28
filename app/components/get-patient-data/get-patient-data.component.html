@@ -1,0 +1,127 @@
+
+<div class="card-body user-info">
+  <div class="col-md-12">
+    <div class="media-left">
+      <a href="javascript:;" class="profile-image">
+        <img class="user-img img-circle" src="assets/images/user-profile/peter.jpg" alt="user-img">
+      </a>
+    </div>
+    <div class="media-body row">
+      <div class="col-lg-12">
+        <div class="user-title">
+          <h1><span> {{_patient?.name[0].given[0]}}</span> <b>{{_patient?.name[0].family.toUpperCase()}} </b></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <!-- Material tab card start -->
+ <app-card [title]="_card.title" [blockClass]="'accordion-block scale-accordion'">
+      <squeezebox [multiple]="true">
+        
+        <sb-item [collapsed]="false" class="accordion-panel">
+          <sb-item-head class="accordion-msg">Information sur le patient</sb-item-head>
+          <sb-item-body class="accordion-content">
+            <div class="accordion-desc">
+               <div class="row">
+	                <div class="col-lg-12 col-xl-6">
+	                  <table class="table m-0 table-responsive">
+	                    <tbody>
+	                    <tr>
+	                      <th scope="row">Nom prénom(s)</th>
+	                      <td>{{_patient?.name[0].family}} <span *ngFor="let name of _patient?.name[0].given"> {{name}} </span></td>
+	                       
+	                    </tr>
+	                    <tr>
+	                      <th scope="row">Sexe</th>
+	                      <td>{{_patient_gender}}</td>
+	                    </tr>
+	                    <tr>
+	                      <th scope="row">Date de naissance</th>
+	                      <td>{{_patient_date}}</td>
+	                    </tr>
+	           			<!-- <tr>
+	                      <th scope="row">Statut marital</th>
+	                      <td>{{_patient?.maritalStatus}}</td>
+	                    </tr> -->
+	                    </tbody>
+	                  </table>
+	                </div>
+	                <!-- end of table col-lg-6 -->
+	                <div class="col-lg-12 col-xl-6">
+	                  <table class="table table-responsive">
+	                    <tbody>
+	                    <tr>
+	                      <th scope="row">Adresse</th>
+	                      <td>{{_patient?.address[0].text}}</td>
+	                    </tr>
+	                    <tr>
+	                      <th scope="row">Email</th>
+	                      <td><a href="javascript:;"></a></td>
+	                    </tr>
+	                    <tr>
+	                      <th scope="row">Mobile Number</th>
+	                      <td>{{_patient?.telecom[2].value}}</td>
+	                    </tr>
+	                    </tbody>
+	                  </table>
+	                </div>
+	                <!-- end of table col-lg-6 -->
+	              </div>
+            </div>
+          </sb-item-body>
+        </sb-item>
+
+        <sb-item class="accordion-panel">
+          <sb-item-head class="accordion-heading accordion-msg">Prise de rendez-vous</sb-item-head>
+          <sb-item-body class="accordion-content">
+            <div class="accordion-desc">
+              <div class="row">
+
+              	<div class="col-sm-12 col-xl-6 m-b-30">
+		          <h4 class="sub-title">Choisir un jour</h4>
+		          
+		            <div class="row form-group">
+		              <div class="col-sm-3">
+			            <label class="col-form-label">Choisir jour</label>
+			          </div>
+		              <div class="input-group col-sm-9">
+		                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="_modelDate" ngbDatepicker #d="ngbDatepicker">
+		                <div class="input-group-addon bg-default" (click)="d.toggle()" >
+		                  <span class="icofont icofont-ui-calendar"></span>
+		                </div>
+		              </div>
+		            </div>
+		          <!-- <pre>Date : {{ parserFormatter.format(modelPopup) }}</pre> -->
+		          	<div class="form-group row">
+			          <label class="col-sm-3 col-form-label">Objet</label>
+			          <div class="col-sm-9">
+			            <input type="text" [(ngModel)]="_modelTitre" class="form-control">
+			          </div>
+			        </div>
+			        <div class="form-group row">
+			          <label class="col-sm-3 col-form-label">Description</label>
+			          <div class="col-sm-9">
+			            <textarea rows="5" cols="5" class="form-control" placeholder="Expliquez la raison de votre demande de rendez-vous (symptômes, besoins, ...)" [(ngModel)]="_modelDesignation"></textarea>
+			          </div>
+			        </div>
+
+		          <button [disabled]="!_modelDate || !_modelTitre" class="btn btn-primary" (click)="sendRequest()">Envoyer une demande</button>
+		        </div>
+
+              </div>
+            </div>
+          </sb-item-body>
+        </sb-item>
+        
+      </squeezebox>
+    </app-card>
+    <!-- Material tab card end -->
+  </div>
+</div>
+<!-- <ng2-toasty [position]="position"></ng2-toasty> -->
+
+<simple-notifications [options]="options"></simple-notifications>

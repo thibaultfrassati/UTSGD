@@ -1,0 +1,14 @@
+.squeezebox .sb-item {
+    overflow: hidden;
+}
+
+.squeezebox .sb-item .sb-item-body {
+    height: 0;
+    overflow: hidden;
+    transition: 0.5s height;
+}
+
+ .btn-primary:disabled {
+    background-color: grey;
+    border-color: lightgrey;
+}
